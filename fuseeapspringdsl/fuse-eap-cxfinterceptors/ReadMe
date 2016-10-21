@@ -1,0 +1,10 @@
+1. CXF Interceptors to Print request and response to the console via stdout , the idea  is to have a hook in to the inteceptors and then 
+push the soap xml's to a different endpoint . Many places need this to store requests and response to a DB/File
+
+2. CXF header interceptor to add a custom soap header to every outgoing request. This will be needed in many places for authentication 
+
+3. The webservice invoked in this example is hosted at http://www.predic8.com:8080/crm/CustomerService?wsdl 
+
+4. This example also explains how to invoke a zero argument method in a webservice in POJO mode
+
+Look at the class InitProcessor , under getAll method 
