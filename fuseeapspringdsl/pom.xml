@@ -1,8 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>fuse-eap-springdsl</groupId>
-  <artifactId>fuseeapspringdsl</artifactId>
- 	<version>0.0.1-SNAPSHOT</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fuse-eap-springdsl</groupId>
+	<artifactId>fuseeapspringdsl</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
 		<jboss.fuse.bom.version>6.3.0.redhat-187</jboss.fuse.bom.version>
@@ -13,6 +14,51 @@
 		</jboss.eap.version>
 		<version.arquillian_core>1.1.2.Final</version.arquillian_core>
 	</properties>
+	<repositories>
+		<repository>
+			<id>jboss-ga-repository</id>
+			<url>http://maven.repository.redhat.com/techpreview/all</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jboss-earlyaccess-repository</id>
+			<url>http://maven.repository.redhat.com/earlyaccess/all/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-earlyaccess-plugin-repository</id>
+			<url>http://maven.repository.redhat.com/earlyaccess/all/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>jboss-ga-plugin-repository</id>
+			<url>http://maven.repository.redhat.com/techpreview/all</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -61,7 +107,7 @@
 			</dependencies>
 		</profile>
 	</profiles>
-	
+
 	<modules>
 		<module>fuse-eap-quartz2</module>
 		<module>fuse-eap-activemq</module>
@@ -70,5 +116,5 @@
 		<module>fuse-eap-cdi</module>
 	</modules>
 </project>
-  
+
 </project>
