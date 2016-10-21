@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+   
+   
+    <camelContext id="camelContext-c5be160c-de44-4d76-92fe-11b424cb1cd0"
+        trace="false" xmlns="http://camel.apache.org/schema/spring">
+        
+        <camel:propertyPlaceholder id="properties" location="classpath:quartzRoute.properties"></camel:propertyPlaceholder>
+        <route id="quartz2">
+        	<camel:from id="fromQuartz" uri="quartz2://timer//me?trigger.repeatInterval=1000&amp;trigger.repeatCount=2"></camel:from>
+        	<camel:to uri="log:fromQuartz?showAll=true&amp;multiline=true"/>
+        </route>
+        
+         <route id="fileQuartz">
+        	<camel:from id="fromFileQuartzScheduler" uri="file://{{fileDirectory}}?noop=true&amp;scheduler=quartz2&amp;scheduler.triggerId=pollingconsumer&amp;scheduler.cron={{fileCron}}"></camel:from>
+        	<camel:to uri="log:fromFileQuartz?showAll=true&amp;multiline=true"/>
+        	<camel:convertBodyTo type="java.lang.String"></camel:convertBodyTo>
+        </route>
+        
+    </camelContext>
+</beans>

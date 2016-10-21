@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<bean id="dozer"
+		class="org.apache.camel.converter.dozer.DozerBeanMapperConfiguration">
+		<property name="mappingFiles">
+			<list>
+				<value>dozerMapping.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="typeConverter"
+		class="org.apache.camel.converter.dozer.DozerTypeConverterLoader">
+		<constructor-arg index="0" ref="dozerContext"></constructor-arg>
+		<constructor-arg index="1" ref="dozer"></constructor-arg>
+	</bean>
+	<bean id="procinit" class="com.fuse.eap.processor.InitProcessor"/>
+	<camelContext id="dozerContext" trace="false"
+		xmlns="http://camel.apache.org/schema/spring">
+		<route id="_route1">
+			<from uri="timer:dozer?fixedRate=true&amp;period=1000&amp;repeatCount=1&amp;delay=2000"></from>
+			<process ref="procinit"></process>
+			<to uri="log:beforeConversion"/>
+			<camel:convertBodyTo type="com.fuse.eap.model.SoapCustomer"></camel:convertBodyTo>
+			<to uri="log:afterConversion"/>
+		</route>
+
+	</camelContext>
+</beans>

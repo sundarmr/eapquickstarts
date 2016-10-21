@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fuse-eap-springdsl</groupId>
+  <artifactId>fuseeapspringdsl</artifactId>
+ 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<properties>
+		<jboss.fuse.bom.version>6.3.0.redhat-187</jboss.fuse.bom.version>
+		<jboss.eap.j2ee.version>3.0.2.Final-redhat-5</jboss.eap.j2ee.version>
+
+		<jboss.eap.version>
+			6.4.10.GA
+		</jboss.eap.version>
+		<version.arquillian_core>1.1.2.Final</version.arquillian_core>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian_core}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.fuse.bom</groupId>
+				<artifactId>jboss-fuse-parent</artifactId>
+				<version>${jboss.fuse.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.bom.eap</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${jboss.eap.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.bom.eap</groupId>
+				<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+				<version>${jboss.eap.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+	<profiles>
+		<profile>
+			<id>JBOSS_AS_REMOTE_7.X</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>
+						jboss-as-arquillian-container-remote
+					</artifactId>
+					<version>7.2.0.Final</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	
+	<modules>
+		<module>fuse-eap-quartz2</module>
+		<module>fuse-eap-activemq</module>
+		<module>fuse-eap-dozer</module>
+		<module>fuse-eap-velocity</module>
+		<module>fuse-eap-cdi</module>
+	</modules>
+</project>
+  
+</project>

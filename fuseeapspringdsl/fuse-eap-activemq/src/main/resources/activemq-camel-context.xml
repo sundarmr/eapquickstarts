@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+	
+	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="brokerURL" value="tcp://localhost:61616"></property>
+		<property name="userName" value="admin"></property>
+		<property name="password" value="admin"></property>
+	</bean>
+
+	<camelContext id="camelContext-c784f29c-5e77-46a4-b5f8-56fb2a8abc35"
+		trace="false" xmlns="http://camel.apache.org/schema/spring">
+		
+		<route id="toActivemq">
+			<from uri="timer:activemq?fixedRate=true&amp;period=1000&amp;repeatCount=10"></from>
+			<camel:setBody><camel:constant>Dummy Message</camel:constant></camel:setBody>
+			<to uri="activemq:queue:sampleQueue"></to>
+			<log message="Sent Message to AMQ"/>
+		</route>
+		<route id="fromActivemq">
+			<from uri="activemq:queue:sampleQueue"></from>
+			<log message="From Amq ${body}"/>
+		</route>
+	</camelContext>
+</beans>

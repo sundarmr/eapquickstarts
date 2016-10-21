@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping>
+		<class-a>com.fuse.eap.Customer</class-a>
+		<class-b>com.fuse.eap.model.SoapCustomer</class-b>
+		<field>
+			<a>name</a>
+			<b>customerName</b>
+		</field>
+		<field>
+			<a>age</a>
+			<b>customerAge</b>
+		</field>
+		<field>
+			<a>companyName</a>
+			<b>companyName</b>
+		</field>
+		<field>
+			<a>zipCode</a>
+			<b>address.zipCode</b>
+		</field>
+		<field>
+			<a>addressLine1</a>
+			<b>address.addressLine1</b>
+		</field>
+		<field>
+			<a>addressLine2</a>
+			<b>address.addressLine2</b>
+		</field>
+		<field>
+			<a>city</a>
+			<b>address.city</b>
+		</field>
+		<field>
+			<a>state</a>
+			<b>address.state</b>
+		</field>
+		<field>
+			<a>countryName</a>
+			<b>address.countryName</b>
+		</field>
+	</mapping>
+</mappings>

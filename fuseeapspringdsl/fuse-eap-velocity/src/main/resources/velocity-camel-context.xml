@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean id="velocityBean" class="com.eap.fuse.processor.InitProcessor"/>
+    <camelContext id="camelContext-415c2a61-e23e-4776-be39-03aede6966c6"
+        trace="false" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+        	<from uri="timer:velocity?fixedRate=true&amp;repeatCount=1&amp;period=1000"/>
+        	<process ref="velocityBean"/>
+        	<to uri="velocity:com/eap/fuse/Velocity.vm"/>
+        	<to uri="log:velocity?showAll=true&amp;multiline=true"/>
+        </route>
+    </camelContext>
+</beans>
