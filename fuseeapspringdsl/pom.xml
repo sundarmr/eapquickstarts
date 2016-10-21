@@ -114,6 +114,7 @@
 		<module>fuse-eap-dozer</module>
 		<module>fuse-eap-velocity</module>
 		<module>fuse-eap-cdi</module>
+		<module>fuse-eap-cxfinterceptors</module>
 	</modules>
 </project>
 
