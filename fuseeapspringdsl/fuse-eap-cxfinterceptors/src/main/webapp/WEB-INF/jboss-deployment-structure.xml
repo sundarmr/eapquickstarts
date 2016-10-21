@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+	<deployment>
+
+		<dependencies>
+			<module name="org.apache.camel.component.cxf">
+			</module>
+			<module name="org.apache.cxf" export="true" slot="3.1">
+				<imports>
+					<include path="META-INF" />
+					<include path="META-INF/cxf**" />
+				</imports>
+			</module>
+		</dependencies>
+	</deployment>
+</jboss-deployment-structure>

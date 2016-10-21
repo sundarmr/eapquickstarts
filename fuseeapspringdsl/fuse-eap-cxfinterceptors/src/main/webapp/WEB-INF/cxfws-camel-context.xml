@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd    http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd                    http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-2.5.xsd                   http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+    <!--  CXF  starts -->
+    <bean class="com.eap.fuse.interceptors.RequestInterceptor" id="requestInterceptorBean">
+      
+    </bean>
+    <bean class="com.eap.fuse.interceptors.ResponseInterceptor" id="responseInterceptorBean">
+        
+    </bean>
+    <bean class="com.eap.fuse.interceptors.HeaderInterceptor" id="headerInterceptor"/>
+    <cxf:cxfEndpoint
+        address="http://www.predic8.com:8080/crm/CustomerService"
+        id="customerServiceEndPoint" serviceClass="com.predic8.wsdl.crm.crmservice._1.CRMServicePT">
+        <cxf:inInterceptors>
+            <ref bean="responseInterceptorBean"/>
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <ref bean="requestInterceptorBean"/>
+            <ref bean="headerInterceptor"/>
+        </cxf:outInterceptors>
+    </cxf:cxfEndpoint>
+    <bean class="com.eap.fuse.InitProcessor" id="camelProcessor"/>
+    <!--  Cxf Ends -->
+    <!-- End of Active MQ -->
+    <camel:camelContext id="cxfws-camel-context" trace="false" xmlns="http://camel.apache.org/schema/spring">
+        <camel:route id="getUserRoute">
+            <camel:from id="_from1" uri="timer:get?delay=4000&amp;repeatCount=1"/>
+            <camel:setHeader headerName="operationName" id="_setHeader1">
+                <camel:constant>get</camel:constant>
+            </camel:setHeader>
+            <camel:process id="_process1" ref="camelProcessor"/>
+            <camel:to id="_to1" uri="cxf:bean:customerServiceEndPoint"/>
+        </camel:route>
+        <camel:route id="createUserRoute">
+            <camel:from id="_from2" uri="timer:get?delay=8000&amp;repeatCount=1"/>
+            <camel:setHeader headerName="operationName" id="_setHeader2">
+                <camel:constant>create</camel:constant>
+            </camel:setHeader>
+            <camel:process id="_process2" ref="camelProcessor"/>
+        </camel:route>
+        <camel:route id="allUsers">
+            <camel:from id="_from3" uri="timer:get?delay=12000&amp;repeatCount=1"/>
+            <camel:setHeader headerName="operationName" id="_setHeader3">
+                <camel:constant>getAll</camel:constant>
+            </camel:setHeader>
+            <camel:process id="_process3" ref="camelProcessor"/>
+            <camel:to id="_to3" uri="cxf:bean:customerServiceEndPoint"/>
+        </camel:route>
+    </camel:camelContext>
+</beans>
