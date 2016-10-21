@@ -7,5 +7,8 @@ The project will include how to write and deploy camel components on EAP in diff
    d. fuse-eap-velocity
 
 2. War
-   a. fuse-eap-cdi
+  a. fuse-eap-cdi
+   
+   
+   
 
