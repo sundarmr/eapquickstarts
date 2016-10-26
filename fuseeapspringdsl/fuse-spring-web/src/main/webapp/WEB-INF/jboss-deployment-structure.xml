@@ -6,6 +6,10 @@
 			<module name="org.apache.camel"/>
 			<module name="org.apache.camel.spring" >
 				<imports>
+					<!-- to include the spring.handlers and the camel-spring xsd's to mitigate the
+					     namespace errors thrown while deploying to eap --you can use export=true 
+					     and export filters after the imports to make the same work in a ear 
+					     deployment -->
 					<include path="*" />
 					<include path="META-INF/*" ></include>				
 				</imports>
