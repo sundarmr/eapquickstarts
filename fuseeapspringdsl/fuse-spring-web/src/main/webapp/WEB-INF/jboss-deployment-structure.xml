@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+	<deployment>
+
+		<dependencies>
+			<module name="org.apache.camel"/>
+			<module name="org.apache.camel.spring" >
+				<imports>
+					<include path="*" />
+					<include path="META-INF/*" ></include>				
+				</imports>
+			</module>
+		
+		</dependencies>
+	</deployment>
+</jboss-deployment-structure>
