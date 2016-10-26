@@ -115,6 +115,7 @@
 		<module>fuse-eap-velocity</module>
 		<module>fuse-eap-cdi</module>
 		<module>fuse-eap-cxfinterceptors</module>
+		<module>fuse-spring-web</module>
 	</modules>
 </project>
 
