@@ -1,0 +1,1 @@
+Illustrates how to start a camel route with javadsl and camel cdi
