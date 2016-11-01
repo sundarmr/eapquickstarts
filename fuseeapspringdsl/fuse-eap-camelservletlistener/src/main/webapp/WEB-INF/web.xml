@@ -11,7 +11,7 @@
 	<context-param>
 		<!-- Should always start with routeBuilder -->
 		<param-name>routeBuilder-camel</param-name>
-		<param-value>com.fuse.eap.routes.MyRouteBuilder</param-value>
+		<param-value>classpath:jndi-camelContext.xml</param-value>
 	</context-param>
 	<context-param>
 		<param-name>CamelContextLifecycle</param-name>
