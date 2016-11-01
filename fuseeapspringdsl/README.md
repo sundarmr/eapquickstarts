@@ -1,4 +1,6 @@
-The project will include how to write and deploy camel components on EAP in different formats
+The project will include how to write and deploy camel components on EAP with XML / Spring DSL 
+
+Different Boot Strap techniques are also explored for starting the camel-context
 
 1. Jar
    a. fuse-eap-activemq
