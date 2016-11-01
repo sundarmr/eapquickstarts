@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>camelwithoutspring</display-name>
+	<context-param>
+		<param-name>name</param-name>
+		<param-value>camel</param-value>
+	</context-param>
+	<context-param>
+		<!-- Should always start with routeBuilder -->
+		<param-name>routeBuilder-camel</param-name>
+		<param-value>com.eap.fuse.routes.MyRouteBuilder</param-value>
+	</context-param>
+	<context-param>
+		<param-name>CamelContextLifecycle</param-name>
+		<param-value>com.eap.fuse.routes.MyLifecycle</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.apache.camel.component.servletlistener.JndiCamelServletContextListener</listener-class>
+	</listener>
+</web-app>
