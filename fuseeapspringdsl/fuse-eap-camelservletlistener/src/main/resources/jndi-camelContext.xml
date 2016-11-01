@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:camel="http://camel.apache.org/schema/spring"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
-    <routes id="routes-3d77bbd0-e1e3-4115-bc67-d55533da7f8f" xmlns="http://camel.apache.org/schema/spring">
-        <route>
-            <from uri="timer:get?delay=4000&amp;repeatCount=1"/>
-            <setHeader headerName="operationName">
-                <constant>getAll</constant>
-            </setHeader>
-            <to uri="bean:cxfbean"/>
-            <to uri="bean:cxfEndpoint"/>
-            <to uri="log:reponse?showAll=true&amp;multiline=true"/>
-        </route>
-    </routes>
-</beans>
+<routes id="routes-3d77bbd0-e1e3-4115-bc67-d55533da7f8f" xmlns="http://camel.apache.org/schema/spring">
+	<route>
+		<from uri="timer:get?delay=4000&amp;repeatCount=1" />
+		<setHeader headerName="operationName">
+			<constant>getAll</constant>
+		</setHeader>
+		<to uri="bean:cxfbean" />
+		<to uri="bean:cxfEndpoint" />
+		<to uri="log:reponse?showAll=true&amp;multiline=true" />
+	</route>
+</routes>
