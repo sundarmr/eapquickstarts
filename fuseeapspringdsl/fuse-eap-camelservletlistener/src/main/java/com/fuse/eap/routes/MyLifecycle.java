@@ -5,6 +5,7 @@ import org.apache.camel.component.servletlistener.ServletCamelContext;
 import org.apache.camel.impl.JndiRegistry;
 
 import com.fuse.eap.endpoint.MyBean;
+import com.fuse.eap.endpoint.MyCxfEndpoint;
 
 public class MyLifecycle implements CamelContextLifecycle<JndiRegistry> {
 
@@ -30,6 +31,7 @@ public class MyLifecycle implements CamelContextLifecycle<JndiRegistry> {
 
 	public void beforeStart(ServletCamelContext arg0, JndiRegistry registry) throws Exception {
 		registry.bind("cxfbean", new MyBean());
+		registry.bind("cxfEndpoint", new MyCxfEndpoint());
 		
 	}
 
