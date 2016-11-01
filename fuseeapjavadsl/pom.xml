@@ -110,6 +110,7 @@
 	</profiles>
 	<modules>
 		<module>fuse-eap-camel</module>
+		<module>fuse-eap-servletlistener</module>
 	</modules>
 
 </project>
