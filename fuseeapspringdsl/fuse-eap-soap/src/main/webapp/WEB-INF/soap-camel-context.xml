@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+	<bean class="org.apache.camel.dataformat.soap.name.ServiceInterfaceStrategy"
+		id="mybean">
+		<constructor-arg value="com.predic8.wsdl.crm.crmservice._1.CRMServicePT" />
+		<constructor-arg value="true" />
+	</bean>
+	<bean class="com.fuse.eap.RequestProcessor" id="requestBean" />
+	<camelContext id="camelContext-357bea56-ac31-4b13-882d-b8a00e3eb995"
+		trace="true" xmlns="http://camel.apache.org/schema/spring">
+		<camel:propertyPlaceholder id="properties"
+			location="classpath:route.properties" />
+
+		<camel:dataFormats>
+			<camel:soapjaxb contextPath="com.predic8.wsdl.crm.crmservice._1"
+				elementNameStrategyRef="myNameStrategy" id="soapJaxb" />
+		</camel:dataFormats>
+		<route id="_route1">
+			<from id="_from1" uri="file://{{fileDirectory}}?noop=true" />
+			<convertBodyTo type="java.lang.String" />
+			<to id="_to1" uri="log:soapJaxb?showAll=true&amp;multiline=true" />
+			<unmarshal id="_marshal1" ref="soapJaxb" />
+			<to id="_to1" uri="log:soapJaxb?showAll=true&amp;multiline=true" />
+		</route>
+	</camelContext>
+</beans>
