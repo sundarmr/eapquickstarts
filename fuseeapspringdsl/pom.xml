@@ -117,6 +117,7 @@
 		<module>fuse-eap-cxfinterceptors</module>
 		<module>fuse-eap-camelservletlistener</module>
 		<module>fuse-spring-web</module>
+		<module>fuse-eap-soap</module>
 	</modules>
 </project>
 
